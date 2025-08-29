@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import Landing from './pages/Landing'
-import Page1 from './pages/Page1'
+import Testing from "./pages/Testing.jsx";
 import Page2 from './pages/Page2'
 import Page3 from './pages/Page3'
 import Page4 from './pages/Page4'
@@ -21,7 +21,7 @@ export default function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Landing />} />
-                <Route path="/001" element={<Page1 />} />
+                <Route path="/Testing" element={<Testing />} />
                 <Route path="/002" element={<Page2 />} />
                 <Route path="/003" element={<Page3 />} />
                 <Route path="/004" element={<Page4 />} />
