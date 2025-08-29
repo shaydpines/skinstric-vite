@@ -1,20 +1,53 @@
-import React, {useState} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import {Link, useNavigate} from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 import ActionButton from "../components/ActionButton.jsx";
-import {Link} from "react-router-dom";
 
 export default function Testing() {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [step, setStep] = useState("name");
+    const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
+    const nameInputRef = useRef(null);
+    const locationInputRef = useRef(null);
+
+    useEffect(() => {
+        if (step === "name" && nameInputRef.current) {
+            nameInputRef.current.focus();
+        } else if (step === "location" && locationInputRef.current) {
+            locationInputRef.current.focus();
+        }
+    }, [step])
+
+    const validateInput = (value) => {
+        const regex = /^[a-zA-Z\s]+$/;
+        return regex.test(value.trim());
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (step === "name") {
+            if (!validateInput(name)) {
+                setError("Please enter a valid name (letters only.)");
+                return;
+            }
+            setError("");
             setStep("location");
         } else if (step === "location") {
+            if (!validateInput(location)) {
+                setError("Please enter a valid location (letters only.)");
+                return;
+            }
+            setError("");
+            if (name && location) {
             sendData();
-            console.log("Form submitted:", {name, location});
+            navigate("/002");
+            } else {
+                setError("Please reload the page and fill in all fields.");
+            }
         }
     };
 
@@ -54,6 +87,7 @@ export default function Testing() {
                 >
                     {step === "name" && (
                         <input
+                            ref={nameInputRef}
                             className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[500px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
                             placeholder="Introduce Yourself" autoComplete="off" type="text" name="name" value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -61,11 +95,13 @@ export default function Testing() {
                     )}
                     {step === "location" && (
                         <input
+                            ref={locationInputRef}
                             className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[500px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
                             placeholder="Where are you from?" autoComplete="off" type="text" name="location" value={location}
                             onChange={(e) => setLocation(e.target.value)}
                         />
                     )}
+                    {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                 </form>
             </div>
 
