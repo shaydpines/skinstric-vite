@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+/*
+
+Fonts
+
+*/
+
+@font-face {
+    font-family: Roobert;
+    src: url('./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Regular.ttf') format('truetype');
+}
+
+:root {
+  font-family: Roobert, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #1a1b1c;
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
