@@ -16,30 +16,48 @@ export default function Landing() {
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
                 <div
-                    className={`absolute w-[420px] h-[420px] z-[-10] border border-dotted border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute lg:hidden size-[420px] z-[-12] border border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
+                />
+                <div
+                    className={`absolute size-[390px] z-[-10] border border-dotted border-[#A0A4AB99] lg:border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
+                />
+                <div
+                    className={`absolute size-[360px] lg:size-[390px] z-[-10] border border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
+                />
+
+
+                {/*ripple borders*/}
+                <div
+                    className={`absolute size-[420px] z-[-10] border border-dotted border-[#A0A4AB99] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100" : "opacity-0 delay-100"}`}
+                />
+                <div
+                    className={`absolute size-[450px] z-[-10] border border-dotted border-[#A0A4AB55] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div
-                    className={`absolute w-[360px] h-[360px] lg:w-[420px] lg:h-[420px] z-[-10] border border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute size-[420px] z-[-10] border border-dotted border-[#A0A4AB99] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100" : "opacity-0 delay-100"}`}
+                />
+                <div
+                    className={`absolute size-[450px] z-[-10] border border-dotted border-[#A0A4AB55] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div
                     className={`hidden lg:flex absolute top-0 left-0 w-full h-full flex-col justify-between items-center`}>
-                    <Link to="/"
-                          className={`transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
-                          onMouseEnter={() => setHovered("left")}
-                          onMouseLeave={() => setHovered(null)}>
-                        <ActionButton id="discover-button" label="DISCOVER A.I." position="left"/>
-                    </Link>
-                    <Link to="/Testing"
-                          className={`transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
-                          onMouseEnter={() => setHovered("right")}
-                          onMouseLeave={() => setHovered(null)}>
-                        <ActionButton id="take-test-button" label="TAKE TEST" position="right"/>
-                    </Link>
+                        <Link to="/"
+                              className={`absolute left-0 top-1/2 -translate-y-1/2 pl-10 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
+                              onMouseEnter={() => setHovered("left")}
+                              onMouseLeave={() => setHovered(null)}>
+                            <ActionButton id="discover-button" label="DISCOVER A.I." direction="left"/>
+                        </Link>
+                        <Link to="/Testing"
+                              className={`absolute right-0 top-1/2 -translate-y-1/2 pr-10 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
+                              onMouseEnter={() => setHovered("right")}
+                              onMouseLeave={() => setHovered(null)}>
+                            <ActionButton id="take-test-button" label="TAKE TEST" direction="right"/>
+                        </Link>
                 </div>
 
-                <div className={`flex flex-col justify-center items-center h-full pt-8`}>
+                <div className={`flex flex-col justify-center items-center text-center h-full pt-8`}>
                     <div
                         className={`text-[60px]/8 lg:text-[100px]/10 transition-transform duration-700`} style={{
                         transform:
@@ -73,9 +91,9 @@ export default function Landing() {
                             needs.
                         </p>
                     </div>
-                    <Link to={'/Testing'} className={`relative lg:hidden pt-12 scale-90`}>
+                    <Link to={'/Testing'} className={`relative lg:hidden pt-2 scale-90`}>
                         <ActionButton id="center-button" label="Enter Experience" weight={"semi-bold"}
-                                      position="center"/>
+                                      direction="right"/>
                     </Link>
                 </div>
             </div>

@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
-import {Link, useNavigate} from "react-router-dom";
+import React, {useState, useRef, useEffect} from 'react'
+import {Link} from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 import ActionButton from "../components/ActionButton.jsx";
+import SpinningSquares from "../components/SpinningSquares.jsx";
 
 export default function Testing() {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [step, setStep] = useState("name");
     const [error, setError] = useState("");
-
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const nameInputRef = useRef(null);
     const locationInputRef = useRef(null);
@@ -43,8 +43,8 @@ export default function Testing() {
             }
             setError("");
             if (name && location) {
-            sendData();
-            navigate("/002");
+                setLoading(true);
+                sendData();
             } else {
                 setError("Please reload the page and fill in all fields.");
             }
@@ -60,54 +60,76 @@ export default function Testing() {
             });
             const data = await response.json();
             console.log("API response:", data);
+            setStep("success");
         } catch (error) {
             console.error("Error sending data:", error);
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000)
     };
 
     return (
         <>
             <Nav/>
-
             <p className="fixed font-semibold text-xs pt-16 ml-9">TO START ANALYSIS</p>
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
-                <div
-                    className={`absolute size-[360px] lg:size-[420px] z-[-10] border border-dotted border-[#A0A4AB] left-1/2 top-1/2 -translate-1/2 rotate-45 animate-[spin_90s_linear_infinite]`}
-                />
-                <div
-                    className={`absolute size-[390px] lg:size-[450px] z-[-11] border border-dotted border-[#A0A4AB99] left-1/2 top-1/2 -translate-1/2 rotate-45 animate-[spin_120s_linear_infinite]`}
-                />
-                <div
-                    className={`absolute size-[420px] lg:size-[480px] z-[-12] border border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45 animate-[spin_150s_linear_infinite]`}
-                />
 
-                <form
-                    className={`absolute left-1/2 top-1/2 -translate-1/2`}
-                    onSubmit={handleSubmit}
+                <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+                    <SpinningSquares loading={loading} slowSeconds={90} fastSeconds={5} direction={1} ratios={[1,0.75,0.6]} />
+                </div>
+
+                {loading ? (<div
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center"
                 >
-                    {step === "name" && (
-                        <input
-                            ref={nameInputRef}
-                            className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[500px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
-                            placeholder="Introduce Yourself" autoComplete="off" type="text" name="name" value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    )}
-                    {step === "location" && (
-                        <input
-                            ref={locationInputRef}
-                            className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[500px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
-                            placeholder="Where are you from?" autoComplete="off" type="text" name="location" value={location}
-                            onChange={(e) => setLocation(e.target.value)}
-                        />
-                    )}
-                    {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-                </form>
+                    <p
+                        className="text-[#82878b] text-4xl font-semibold text-center mb-4">
+                        Processing Request
+                    </p>
+                </div>) : step !== "success" ? (<>
+                    <p className="absolute left-1/2 top-2/5 -translate-x-1/2 translate-y-1/2 text-[#82878b] tracking-wider uppercase mb-1">
+                        {(!name && step === "name") ? `CLICK TO TYPE` : (name && step === "name") ? `Introduce yourself` : (!location && step === "location") ? `CLICK TO TYPE` : `Where are you from?`}
+                    </p>
+
+                    <form
+                        className={`absolute left-1/2 top-1/2 -translate-1/2`}
+                        onSubmit={handleSubmit}
+                    >
+                        {step === "name" && (
+                            <input
+                                ref={nameInputRef}
+                                className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none min-w-[400px] max-w-svw field-sizing-content pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
+                                placeholder="Introduce yourself" autoComplete="off" type="text" name="name" value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        )}
+                        {step === "location" && (
+                            <input
+                                ref={locationInputRef}
+                                className="font-roobert text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none min-w-[500px] max-w-svw field-sizing-content pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10"
+                                placeholder="Where are you from?" autoComplete="off" type="text" name="location"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                            />
+                        )}
+                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                    </form>
+                </>) : (<>
+                    <div
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-10">
+                        <p
+                            className="text-4xl font-normal text-[#1A1B1C] tracking-wide">Thank you!</p><p
+                        className="text-lg text-[#82878b]">Proceed for the next step</p></div>
+                </>)
+                }
             </div>
 
-            <Link to={`/`} className={`fixed bottom-15`}>
-                <ActionButton id={`Back`} label={`Back`} position={`left`}/>
+            <Link to={`/`} className={`fixed bottom-15 left-10 scale-125`}>
+                <ActionButton id={`Back`} label={`Back`} direction={"left"}/>
             </Link>
+            {step === "success" && !loading && <Link to={`/002`} className={`fixed bottom-15 right-10 scale-125`}>
+                <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`}/>
+            </Link>}
         </>
     )
 }
