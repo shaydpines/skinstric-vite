@@ -12,33 +12,32 @@ export default function Landing() {
 
     return (
         <>
-            <Nav></Nav>
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
                 <div
-                    className={`absolute lg:hidden size-[420px] z-[-12] border border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
+                    className={`absolute lg:hidden size-[420px] z-[-12] border-2 border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
                 />
                 <div
-                    className={`absolute size-[390px] z-[-10] border border-dotted border-[#A0A4AB99] lg:border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute size-[390px] z-[-10] border-2 border-dotted border-[#A0A4AB99] lg:border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
                 />
                 <div
-                    className={`absolute size-[360px] lg:size-[390px] z-[-10] border border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute size-[360px] lg:size-[390px] z-[-10] border-2 border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
                 />
 
 
                 {/*ripple borders*/}
                 <div
-                    className={`absolute size-[420px] z-[-10] border border-dotted border-[#A0A4AB99] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100" : "opacity-0 delay-100"}`}
+                    className={`absolute size-[420px] z-[-10] border-2 border-dotted border-[#A0A4AB99] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100" : "opacity-0 delay-100"}`}
                 />
                 <div
-                    className={`absolute size-[450px] z-[-10] border border-dotted border-[#A0A4AB55] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100 delay-100" : "opacity-0"}`}
+                    className={`absolute size-[450px] z-[-10] border-2 border-dotted border-[#A0A4AB55] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div
-                    className={`absolute size-[420px] z-[-10] border border-dotted border-[#A0A4AB99] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100" : "opacity-0 delay-100"}`}
+                    className={`absolute size-[420px] z-[-10] border-2 border-dotted border-[#A0A4AB99] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100" : "opacity-0 delay-100"}`}
                 />
                 <div
-                    className={`absolute size-[450px] z-[-10] border border-dotted border-[#A0A4AB55] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100 delay-100" : "opacity-0"}`}
+                    className={`absolute size-[450px] z-[-10] border-2 border-dotted border-[#A0A4AB55] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div
@@ -49,7 +48,7 @@ export default function Landing() {
                               onMouseLeave={() => setHovered(null)}>
                             <ActionButton id="discover-button" label="DISCOVER A.I." direction="left"/>
                         </Link>
-                        <Link to="/Testing"
+                        <Link to="/testing"
                               className={`absolute right-0 top-1/2 -translate-y-1/2 pr-10 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
                               onMouseEnter={() => setHovered("right")}
                               onMouseLeave={() => setHovered(null)}>
@@ -91,7 +90,7 @@ export default function Landing() {
                             needs.
                         </p>
                     </div>
-                    <Link to={'/Testing'} className={`relative lg:hidden pt-2 scale-90`}>
+                    <Link to={'/testing'} className={`relative lg:hidden pt-2 scale-90`}>
                         <ActionButton id="center-button" label="Enter Experience" weight={"semi-bold"}
                                       direction="right"/>
                     </Link>

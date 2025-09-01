@@ -44,19 +44,19 @@ export default function SpinningSquares({
     return (
         <>
             <div
-                className="absolute size-[360px] lg:size-[420px] border border-dotted border-[#A0A4AB] left-1/2 top-1/2"
+                className="absolute size-[360px] lg:size-[420px] border-2 border-dotted border-[#A0A4AB] left-1/2 top-1/2"
                 style={{ transform: `translate(-50%, -50%) rotate(${angle * ratios[0] + 45}deg)`,
                     transformOrigin: "center center"
                 }}
             />
             <div
-                className="absolute size-[390px] lg:size-[450px] border border-dotted border-[#A0A4AB99] left-1/2 top-1/2"
+                className="absolute size-[390px] lg:size-[450px] border-2 border-dotted border-[#A0A4AB99] left-1/2 top-1/2"
                 style={{ transform: `translate(-50%, -50%) rotate(${angle * ratios[1] + 45}deg)`,
                     transformOrigin: "center center"
                 }}
             />
             <div
-                className="absolute size-[420px] lg:size-[480px] border border-dotted border-[#A0A4AB55] left-1/2 top-1/2"
+                className="absolute size-[420px] lg:size-[480px] border-2 border-dotted border-[#A0A4AB55] left-1/2 top-1/2"
                 style={{ transform: `translate(-50%, -50%) rotate(${angle * ratios[2] + 45}deg)`,
                     transformOrigin: "center center"
                 }}

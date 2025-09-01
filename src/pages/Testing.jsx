@@ -66,12 +66,11 @@ export default function Testing() {
         }
         setTimeout(() => {
             setLoading(false);
-        }, 2000)
+        }, 1000)
     };
 
     return (
         <>
-            <Nav/>
             <p className="fixed font-semibold text-xs pt-16 ml-9">TO START ANALYSIS</p>
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
@@ -124,10 +123,10 @@ export default function Testing() {
                 }
             </div>
 
-            <Link to={`/`} className={`fixed bottom-15 left-10 scale-125`}>
+            <Link to={`/`} className={`fixed bottom-15 left-9 scale-125`}>
                 <ActionButton id={`Back`} label={`Back`} direction={"left"}/>
             </Link>
-            {step === "success" && !loading && <Link to={`/002`} className={`fixed bottom-15 right-10 scale-125`}>
+            {step === "success" && !loading && <Link to={`/start-analysis`} className={`fixed bottom-15 right-9 scale-125`}>
                 <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`}/>
             </Link>}
         </>
