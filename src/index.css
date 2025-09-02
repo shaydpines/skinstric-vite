@@ -43,3 +43,16 @@
     }
 }
 
+.border-dotted-alt {
+    border: 4px solid transparent;
+    border-image: repeating-linear-gradient(
+            to right,
+            #ef4444 0, /* red-500 */
+            #ef4444 4px,
+            #3b82f6 4px, /* blue-500 */
+            #3b82f6 8px,
+            transparent 8px,
+            transparent 12px
+    )
+    1;
+}

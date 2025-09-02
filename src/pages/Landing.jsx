@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import Nav from "../components/Nav.jsx";
-import ActionButton from "../components/ActionButton.jsx";
 import {Link} from "react-router-dom";
-
+import ActionButton from "../components/ActionButton.jsx";
+import DottedSquare from "../components/DottedSquare.jsx";
 export default function Landing() {
     const [hovered, setHovered] = useState(null)
 
@@ -14,30 +13,31 @@ export default function Landing() {
         <>
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
+                {/*dotted squares*/}
                 <div
-                    className={`absolute lg:hidden size-[420px] z-[-12] border-2 border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
+                    className={`absolute lg:hidden size-[420px] z-[-12] border-3 border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
                 />
                 <div
-                    className={`absolute size-[390px] z-[-10] border-2 border-dotted border-[#A0A4AB99] lg:border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute size-[390px] z-[-11] border-3 border-dotted border-[#A0A4AB99] lg:border-[#A0A4AB] left-1/2 lg:left-0 top-1/2 -translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "right" ? "opacity-0" : "opacity-100"}`}
                 />
                 <div
-                    className={`absolute size-[360px] lg:size-[390px] z-[-10] border-2 border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute size-[360px] lg:size-[390px] z-[-10] border-3 border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
                 />
 
 
                 {/*ripple borders*/}
                 <div
-                    className={`absolute size-[420px] z-[-10] border-2 border-dotted border-[#A0A4AB99] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100" : "opacity-0 delay-100"}`}
+                    className={`absolute size-[420px] z-[-10] border-3 border-dotted border-[#A0A4AB99] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100" : "opacity-0 delay-100"}`}
                 />
                 <div
-                    className={`absolute size-[450px] z-[-10] border-2 border-dotted border-[#A0A4AB55] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100 delay-100" : "opacity-0"}`}
+                    className={`absolute size-[450px] z-[-10] border-3 border-dotted border-[#A0A4AB55] left-0 top-1/2 -translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "left" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div
-                    className={`absolute size-[420px] z-[-10] border-2 border-dotted border-[#A0A4AB99] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100" : "opacity-0 delay-100"}`}
+                    className={`absolute size-[420px] z-[-10] border-3 border-dotted border-[#A0A4AB99] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100" : "opacity-0 delay-100"}`}
                 />
                 <div
-                    className={`absolute size-[450px] z-[-10] border-2 border-dotted border-[#A0A4AB55] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100 delay-100" : "opacity-0"}`}
+                    className={`absolute size-[450px] z-[-10] border-3 border-dotted border-[#A0A4AB55] right-0 bottom-1/2 translate-1/2 rotate-45 opacity-0 transition-opacity duration-500 ${hovered === "right" ? "opacity-100 delay-100" : "opacity-0"}`}
                 />
 
                 <div

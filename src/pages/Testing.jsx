@@ -1,6 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {Link} from "react-router-dom";
-import Nav from "../components/Nav.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 import SpinningSquares from "../components/SpinningSquares.jsx";
 
