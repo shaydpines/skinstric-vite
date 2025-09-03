@@ -150,7 +150,7 @@ export default function StartAnalysis() {
                 <ActionButton id={`Back`} label={`Back`} direction={"left"}/>
             </Link>
             {success && !loading &&
-                <Link to={`/results`} state={{data: data.current}} className={`fixed bottom-15 right-9 scale-125`}>
+                <Link to={`/select`} state={{data: data.current}} className={`fixed bottom-15 right-9 scale-125`}>
                     <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`}/>
                 </Link>}
         </>
