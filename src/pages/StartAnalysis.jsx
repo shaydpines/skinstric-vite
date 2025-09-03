@@ -6,13 +6,17 @@ import camera from "../assets/camera.png";
 import gallery from "../assets/gallery.png";
 import wand from "../assets/wand.png";
 import rounded_backdrop from "../assets/rounded_backdrop.png";
+import Preview from "../components/Preview.jsx";
+import Nav from "../components/Nav.jsx";
+import Header from "../components/Header.jsx";
 
 export default function StartAnalysis() {
-    const [imageURL, setImageURL] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
-    const fileUploadRef = useRef();
+    const fileUploadRef = useRef(null);
+    const data = useRef(null);
 
     function handleImageUpload(event) {
         event.preventDefault();
@@ -49,9 +53,10 @@ export default function StartAnalysis() {
                 body: JSON.stringify({image: rawBase64}),
             })
             if (response.ok) {
-                const data = await response.json();
-                console.log("API response:", data);
-                setImageURL(base64File)
+                const promise = await response.json();
+                console.log("API response:", promise.data);
+                data.current = promise.data;
+                setImageUrl(base64File)
                 setError(false);
                 setSuccess(true);
             } else {
@@ -75,19 +80,13 @@ export default function StartAnalysis() {
 
     return (
         <>
+            <Nav text={`INTRO`}/>
+            <Preview imageUrl={imageUrl} loading={loading}/>
+            <Header text={`TO START ANALYSIS`}/>
             <div
-                className="hidden xs:block absolute top-16 right-9 transition-opacity duration-300 opacity-100">
-                <h1 className="text-xs md:text-sm font-normal mb-1">Preview</h1>
-                <div className="w-24 h-24 md:w-32 md:h-32 border border-gray-300 overflow-hidden">
-                    {imageURL && !loading && <img src={imageURL} alt="avatar" className="w-full h-full object-cover"/>}
-                </div>
-            </div>
-            <div className="absolute top-16 left-9"><p
-                className="font-semibold text-xs md:text-sm">TO START ANALYSIS</p></div>
-            <div
-                className={"scale-80 sm:scale-100 xl:scale-125 relative w-svw h-svh sm:overflow-hidden xs:py-12 flex justify-center items-center sm:pt-0"}>
+                className={"scale-80 sm:scale-100 relative w-svw h-svh sm:overflow-hidden xs:py-12 flex justify-center items-center sm:pt-0"}>
                 <div
-                    className={"w-full md:mx-12 lg:mx-24 xl:mx-60 flex flex-col sm:flex-row sm:justify-between items-center"}>
+                    className={"w-full md:mx-12 lg:mx-36 xl:mx-48 flex flex-col sm:flex-row sm:justify-between items-center"}>
                     <div className={"relative size-[200px] m-16"}>
                         <div
                             className={`scale-50 md:scale-66 lg:scale-68 absolute left-1/2 top-1/2 -translate-1/2 flex justify-center items-center`}>
@@ -150,9 +149,10 @@ export default function StartAnalysis() {
             <Link to={`/Testing`} className={`fixed bottom-15 left-9 scale-125`}>
                 <ActionButton id={`Back`} label={`Back`} direction={"left"}/>
             </Link>
-            {success && !loading && <Link to={`/results`} className={`fixed bottom-15 right-9 scale-125`}>
-                <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`}/>
-            </Link>}
+            {success && !loading &&
+                <Link to={`/results`} state={{data: data.current}} className={`fixed bottom-15 right-9 scale-125`}>
+                    <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`}/>
+                </Link>}
         </>
     )
 }

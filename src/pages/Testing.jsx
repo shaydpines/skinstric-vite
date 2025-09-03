@@ -2,6 +2,8 @@ import React, {useState, useRef, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import ActionButton from "../components/ActionButton.jsx";
 import SpinningSquares from "../components/SpinningSquares.jsx";
+import Nav from "../components/Nav.jsx";
+import Header from "../components/Header.jsx";
 
 export default function Testing() {
     const [name, setName] = useState("");
@@ -70,7 +72,8 @@ export default function Testing() {
 
     return (
         <>
-            <p className="fixed font-semibold text-xs pt-16 ml-9">TO START ANALYSIS</p>
+            <Nav text={`INTRO`} />
+            <Header text={`TO START ANALYSIS`}/>
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
                 <div className="absolute inset-0 flex justify-center items-center pointer-events-none">

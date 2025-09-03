@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import ActionButton from "../components/ActionButton.jsx";
-import DottedSquare from "../components/DottedSquare.jsx";
+import Nav from "../components/Nav.jsx";
+
 export default function Landing() {
     const [hovered, setHovered] = useState(null)
 
-    useEffect(() => {
-        console.log(hovered)
-    }, [hovered])
+
 
     return (
         <>
+            <Nav text={`INTRO`} />
             <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
 
                 {/*dotted squares*/}
@@ -23,7 +23,6 @@ export default function Landing() {
                 <div
                     className={`absolute size-[360px] lg:size-[390px] z-[-10] border-3 border-dotted border-[#A0A4AB] right-1/2 lg:right-0 bottom-1/2 translate-1/2 rotate-45 transition-opacity duration-500 ${hovered === "left" ? "opacity-0" : "opacity-100"}`}
                 />
-
 
                 {/*ripple borders*/}
                 <div
