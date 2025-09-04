@@ -7,7 +7,7 @@ const ActionButton = ({ id, label, weight, direction }) => {
   return (
     <button
       id={id}
-      className={`relative flex items-center justify-center gap-4 whitespace-nowrap rounded-md text-sm font-normal transition-colors cursor-pointer h-9 px-3 py-1 hover:scale-105 duration-300 ease-in-out
+      className={`relative flex items-center justify-center gap-4 whitespace-nowrap rounded-md text-sm font-normal cursor-pointer h-9 px-3 py-1 hover:scale-105 duration-300 ease-in-out
         ${isLeft ? "flex-row" : "flex-row-reverse"}`}
     >
       <div className="w-[40px] sm:w-[30px] h-[40px] sm:h-[30px] bg-white border border-solid border-black rotate-45 cursor-pointer"></div>

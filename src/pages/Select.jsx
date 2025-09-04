@@ -7,10 +7,20 @@ import ActionButton from "../components/ActionButton.jsx";
 export default function Select() {
   const location = useLocation();
   const data = useRef(null);
+  const [savedAttributes, setSavedAttributes] = useState(["", "", ""]);
 
   useEffect(() => {
-    data.current = location.state?.data;
-  }, [location.state?.data]);
+  if (location.state?.data) {
+    data.current = location.state.data;
+  }
+}, [location.state?.data]);
+  
+useEffect(() => {
+  if (location.state?.selectedAttributes) {
+    setSavedAttributes(location.state.selectedAttributes);
+  }
+}, [location.state?.selectedAttributes]);
+
 
   const waveRefs = useRef([]);
   const [hovered, setHovered] = useState(null);
@@ -19,7 +29,7 @@ export default function Select() {
     waveRefs.current.forEach((el) => {
       if (!el) return;
       el.classList.remove("wave");
-      void el.offsetWidth; // force reflow
+      void el.offsetWidth;
       el.classList.add("wave");
     });
   };
@@ -122,7 +132,7 @@ export default function Select() {
       </Link>
       <Link
         to={`/summary`}
-        state={{ data: data.current }}
+        state={{ data: data.current, savedAttributes: savedAttributes }}
         className={`fixed bottom-15 right-9 scale-125`}
       >
         <ActionButton id={`Proceed`} label={`Proceed`} direction={`right`} />
