@@ -1,34 +1,39 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @custom-variant hover (&:hover);
 @font-face {
-    font-family: 'Roobert';
-    src: url('./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Roobert";
+  src: url("./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roobert';
-    src: url('./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Roobert";
+  src: url("./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roobert';
-    src: url('./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Roobert";
+  src: url("./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roobert';
-    src: url('./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Roobert";
+  src: url("./assets/DP_roobert_TRIAL/DP_roobert_TRIAL/RoobertTRIAL-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
+
 @theme {
-    --breakpoint-xs: 30rem;
+  --breakpoint-xs: 30rem;
 }
 
 :root {
@@ -47,23 +52,23 @@
 }
 
 .wave {
-    animation: wave 600ms ease-in-out;
+  animation: wave 600ms ease-in-out;
 }
 
 @keyframes wave {
-    0% {
-        opacity: 1;
-        width: var(--size-base);
-        height: var(--size-base);
-    }
-    50% {
-        opacity: var(--opacity-expanded);
-        width: var(--size-expanded);
-        height: var(--size-expanded);
-    }
-    100% {
-        opacity: var(--opacity-end);
-        width: var(--size-expanded);
-        height: var(--size-expanded);
-    }
+  0% {
+    opacity: 1;
+    width: var(--size-base);
+    height: var(--size-base);
+  }
+  50% {
+    opacity: var(--opacity-expanded);
+    width: var(--size-expanded);
+    height: var(--size-expanded);
+  }
+  100% {
+    opacity: var(--opacity-end);
+    width: var(--size-expanded);
+    height: var(--size-expanded);
+  }
 }
