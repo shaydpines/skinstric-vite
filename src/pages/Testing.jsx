@@ -90,7 +90,7 @@ export default function Testing() {
 
         {loading ? (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center">
-            <p className="text-[#82878b] text-4xl font-semibold text-center mb-4">
+            <p className="text-[#82878b] text-4xl font-semibold text-center mb-4 transition-opacity duration-300 ease-in-out animate-pulse">
               Processing Request
             </p>
           </div>
