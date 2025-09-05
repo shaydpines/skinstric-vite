@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 import Header from "../components/Header.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 
 export default function Select() {
   const location = useLocation();
+  const navigate = useNavigate();
   const data = useRef(null);
   const [savedAttributes, setSavedAttributes] = useState(["", "", ""]);
 
@@ -42,6 +43,10 @@ useEffect(() => {
   const handleLeave = () => {
     setHovered(null);
   };
+
+  const handleNavigate = () => {
+    navigate("/summary", { state: { data: data.current, savedAttributes: savedAttributes }})
+  }
 
   const buttons = [
     { label: "DEMOGRAPHICS", shift: "-translate-x-2 -translate-y-2" }, // top-left
@@ -100,6 +105,7 @@ useEffect(() => {
           {buttons.map((btn, i) => (
             <div
               key={i}
+              onClick={i === 0 ? handleNavigate : () => {}}
               onMouseEnter={() => handleEnter(i)}
               onMouseLeave={handleLeave}
               className={`relative size-[163px] transition-all duration-300 ease-in-out
@@ -115,7 +121,6 @@ useEffect(() => {
                             ? `bg-[#A0A4AB8F] ${btn.shift}`
                             : "bg-[#A0A4AB2F]"
                         }`}
-              onClick={() => {}}
             >
               <p className="absolute left-1/2 top-1/2 -translate-1/2 -rotate-45 whitespace-pre text-center">
                 {btn.label}

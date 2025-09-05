@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ActionButton from "../components/ActionButton.jsx";
 import Preview from "../components/Preview.jsx";
@@ -8,12 +8,21 @@ import CameraButton from "../components/CameraButton.jsx";
 import GalleryButton from "../components/GalleryButton.jsx";
 
 export default function StartAnalysis() {
+  const [modal, setModal] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [rawBase64, setRawBase64] = useState(null)
+  const [rawBase64, setRawBase64] = useState(null);
   const fileUploadRef = useRef(null);
+
+  function toggleModal() {
+    setModal(!modal);
+  }
+
+  useEffect(() => {
+    console.log(modal);
+  }, [modal]);
 
   function handleImageUpload(event) {
     event.preventDefault();
@@ -64,7 +73,9 @@ export default function StartAnalysis() {
             "w-full md:mx-12 lg:mx-36 xl:mx-48 flex flex-col sm:flex-row sm:justify-between items-center"
           }
         >
-          <CameraButton />
+          <div className={"modal-anchor"}>
+            <CameraButton toggleModal={toggleModal} modal={modal} />
+          </div>
           <GalleryButton
             fileUploadRef={fileUploadRef}
             uploadImageDisplay={uploadImageDisplay}
@@ -77,6 +88,39 @@ export default function StartAnalysis() {
           <p className="text-red-500 text-sm">
             Error uploading image. Please try again.
           </p>
+        </div>
+      )}
+
+      <div
+        onClick={() => setModal(false)}
+        className={`fixed inset-0 bg-white/50 transition-opacity duration-200 ease-in-out
+            ${
+              modal
+                ? "opacity-100 pointer-events-auto z-[200]"
+                : "opacity-0 pointer-events-none -z-[200]"
+            }
+        `}
+      />
+      {modal && (
+        <div className="modal absolute z-[300] -translate-x-138/100 translate-y-19/10 sm:translate-y-0 sm:-translate-x-1/3 bg-[#1A1B1C] pt-4 pb-2">
+          <h2 className="text-[#FCFCFC] font-semibold sm:mb-12 leading-[24px] px-4">
+            ALLOW A.I. TO ACCESS YOUR CAMERA
+          </h2>
+          <div className="mt-4 border-t border-[#FCFCFC]" />
+          <div className="flex justify-end gap-2 pt-2">
+            <button 
+            onClick={toggleModal}
+            className="px-7 text-[#fcfcfca1] font-normal text-sm leading-4 tracking-tight cursor-pointer hover:text-gray-500">
+              DENY
+            </button>
+            <Link
+              to={'/camera'}
+            >
+            <button className="px-5 text-[#FCFCFC] font-semibold text-sm leading-4 tracking-tight cursor-pointer hover:text-gray-300">
+              ALLOW
+            </button>
+            </Link>
+          </div>
         </div>
       )}
 

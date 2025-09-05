@@ -46,7 +46,7 @@ export default function Summary() {
   };
 
   const backOut = () => {
-    resetData();
+    resetData()
     navigate('/select', {state: { data: data, selectedAttributes: selectedAttributes }})
   }
 
@@ -58,7 +58,7 @@ export default function Summary() {
     if (Array.isArray(savedAttrs) && savedAttrs.some((attr) => attr !== "")) {
       setTimeout(() => {
         setSelectedAttributes(savedAttrs);
-      }, 1);
+      }, 10);
     }
   }, [location.state]);
 
@@ -85,7 +85,7 @@ export default function Summary() {
 
   return (
     <>
-      <Nav text={`ANALYSIS`} />
+      <Nav text={`ANALYSIS`} background={'white'} />
       <Header text={`A.I. ANALYSIS`} />
       <div className={`px-9`}>
         <h3 className="mt-20 text-4xl md:text-5xl font-normal leading-[64px] tracking-tighter">

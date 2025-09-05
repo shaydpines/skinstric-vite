@@ -77,7 +77,7 @@ export default function Testing() {
     <>
       <Nav text={`INTRO`} />
       <Header text={`TO START ANALYSIS`} />
-      <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
+      <div className="scale-65 xs:scale-80 sm:scale-90 md:scale-100 relative w-svw h-svh sm:overflow-hidden">
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <SpinningSquares
             loading={loading}
