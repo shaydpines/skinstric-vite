@@ -51,6 +51,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.modal-anchor {
+    anchor-name: --camera-button;
+}
+
+.modal {
+    position: fixed;
+    inset-block-start: anchor(--camera-button top);
+    inset-inline-start: anchor(--camera-button right);
+}
+
 .wave {
   animation: wave 600ms ease-in-out;
 }
