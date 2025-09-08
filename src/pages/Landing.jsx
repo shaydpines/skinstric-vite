@@ -9,7 +9,7 @@ export default function Landing() {
   return (
     <>
       <Nav text={`INTRO`} />
-      <div className="scale-65 xs:scale-75 sm:scale-100 relative w-svw h-svh sm:overflow-hidden">
+      <div className="scale-65 xs:scale-80 sm:scale-90 md:scale-100 relative w-svw h-svh sm:overflow-hidden">
         {/*dotted squares*/}
         <div
           className={`absolute lg:hidden size-[420px] z-[-12] border-3 border-dotted border-[#A0A4AB55] left-1/2 top-1/2 -translate-1/2 rotate-45`}
